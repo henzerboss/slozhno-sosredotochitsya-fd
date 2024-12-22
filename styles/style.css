@@ -3,6 +3,7 @@
 .header {
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: 25px repeat(3, auto) 25px;
   justify-items: end;
   padding: var(--padding-section);
   block-size: 100vh;
@@ -48,13 +49,15 @@ footer::after {
   border-radius: 50%;
 }
 
+.header__theme-menu {
+  margin-block-start: 38px;
+}
+
 .header__theme-menu-list {
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
   color: var(--header-elements-color);
-  margin-block-start: 40px;
-  margin-block-end: 65px;
   text-transform: lowercase;
 }
 
@@ -93,13 +96,14 @@ footer::after {
   font-size: var(--font-size-title);
   line-height: 82.5%;
   justify-self: start;
+  align-self: center;
 }
 
 .header__description {
-  margin-block-start: 55px;
-  margin-block-end: 31px;
+  align-self: center;
   font-weight: 700;
   block-size: max-content;
+  margin-block-start: 20px;
 }
 
 .title-decor {
@@ -197,22 +201,23 @@ footer::after {
 /* Задание (width > 780px) противоречит макету (width >= 768px). Выполняю согласно макету.*/
 @media (width >= 768px) {
   .header {
-    min-block-size: 1024px;
+    height: auto;
   }
 
-  .header__theme-menu-list {
-    margin-block-start: 147px;
-    margin-block-end: 174px;
+  .header__theme-menu {
+    margin-block-start: 145px;
   }
 
   .header__title {
     margin-inline-start: -20px;
+    margin-block-start: 178px;
   }
 
   .header__description {
-    margin-block-start: 162px;
     inline-size: 50%;
-    margin-block-end: 138px;
+    align-self: start;
+    margin-block-start: 158px;
+    margin-block-end: 140px;
   }
 
   .content {
@@ -291,35 +296,34 @@ footer::after {
 
   .footer {
     margin-block-start: 40px;
-    min-block-size: 1024px;
+    height: auto;
   }
 
   .footer__title {
-    margin-block-start: 420px;
-    margin-block-end: 415px;
+    margin-block: 418px;
   }
 }
 
 /* Задание (width > 1024px) противоречит макету (width >= 1024px). Выполняю согласно макету.*/
 @media (min-width: 1024px) {
-  .header {
-    min-block-size: 768px;
-  }
-
   .header__theme-menu {
     display: grid;
     justify-self: center;
+    align-self: start;
+    margin-block-start: 0;
   }
 
   .header__theme-menu-list {
     grid-template-columns: 1fr 1fr 1fr;
     margin-block-start: -25px;
-    margin-block-end: 275px;
+  }
+
+  .header__title {
+    margin-block-start: 274px;
   }
 
   .header__description {
     margin-block-start: 112px;
-    inline-size: 50%;
     margin-block-end: 90px;
   }
 
@@ -345,11 +349,7 @@ footer::after {
     margin-block: 50px 10px;
   }
 
-  .footer {
-    min-block-size: 768px;
-  }
-
   .footer__title {
-    margin-block: 275px;
+    margin-block: 276px;
   }
 }
