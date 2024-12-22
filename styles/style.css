@@ -88,6 +88,10 @@ footer::after {
   pointer-events: none;
 }
 
+.header__title {
+  margin-block-end: 10px;
+}
+
 .header__title,
 .footer__title {
   color: var(--title-color);
@@ -103,7 +107,7 @@ footer::after {
   align-self: center;
   font-weight: 700;
   block-size: max-content;
-  margin-block-start: 20px;
+  margin-block-end: 10px;
 }
 
 .title-decor {
@@ -201,6 +205,7 @@ footer::after {
 /* Задание (width > 780px) противоречит макету (width >= 768px). Выполняю согласно макету.*/
 @media (width >= 768px) {
   .header {
+    /* Начиная с разрешения 768 удалил высоту блока, равную высоте экрана согласно замечанию "https://disk.yandex.ru/i/U9nt6YrZis6uKg на разрешении 768px высота блока не равна высоте экрана, эту высоту следует удалить, в том числе высоту min-block-size: 768px; (проконтролируйте это так же в блоке footer)"*/
     height: auto;
   }
 
@@ -211,6 +216,7 @@ footer::after {
   .header__title {
     margin-inline-start: -20px;
     margin-block-start: 178px;
+    margin-block-end: 0;
   }
 
   .header__description {
