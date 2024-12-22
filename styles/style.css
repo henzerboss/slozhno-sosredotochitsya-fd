@@ -1,36 +1,12 @@
 /* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
 
-p {
-  color: var(--main-text-color);
-}
-
-p a {
-  text-shadow: 1px 1px 0 var(--accent-color);
-  text-decoration: none;
-}
-
-p a:hover {
-  border-block-end: 1px solid var(--main-color);
-}
-
-p a:focus {
-  outline: none;
-}
-
-p a:focus-visible {
-  outline: 1px solid var(--main-color);
-}
-
 .header {
   display: grid;
   grid-template-columns: 1fr;
   justify-items: end;
-  background-image: var(--header-background);
-  background-position: center;
-  background-size: cover;
   padding: var(--padding-section);
   block-size: 100vh;
-  max-block-size: 668px;
+  min-block-size: 668px;
 }
 
 .header::before,
@@ -50,6 +26,7 @@ footer::after {
   border-block-end: 1px solid var(--header-elements-color);
   border-inline-start: 1px solid var(--header-elements-color);
   justify-self: start;
+  align-self: end;
 }
 
 .header__rec {
@@ -58,8 +35,7 @@ footer::after {
   gap: 10px;
   position: absolute;
   color: var(--accent-color);
-  top: calc(0px + var(--padding-section));
-  right: calc(9px + var(--padding-section));
+  padding-right: 9px;
 }
 
 .header__rec::after {
@@ -89,6 +65,7 @@ footer::after {
   padding-inline: 13px;
   padding-block-start: 0px;
   padding-block-end: 2px;
+  cursor: pointer;
 }
 
 .header__theme-menu-button:hover {
@@ -122,6 +99,7 @@ footer::after {
   margin-block-start: 55px;
   margin-block-end: 31px;
   font-weight: 700;
+  block-size: max-content;
 }
 
 .title-decor {
@@ -133,6 +111,10 @@ footer::after {
   /* сохраните в разметке и стилях класс page у тега body. Он удобен, чтобы составлять селекторы для разных цветовых тем. */
   display: grid;
   background-color: var(--background-color);
+  background-image: var(--header-background);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .content {
@@ -142,18 +124,34 @@ footer::after {
   padding: var(--padding-section);
 }
 
-.content__type_one {
-  display: grid;
-  grid-template-columns: 1fr;
-}
-
-.content__type_two {
+.content__section {
   display: grid;
   grid-template-columns: 1fr;
 }
 
 .content__title {
   color: var(--header-elements-color);
+}
+
+.content__text {
+  color: var(--main-text-color);
+}
+
+.content__text a {
+  text-shadow: 2px 2px 0 var(--accent-color);
+  text-decoration: none;
+}
+
+.content__text a:hover {
+  border-block-end: 1px solid var(--main-color);
+}
+
+.content__text a:focus {
+  outline: none;
+}
+
+.content__text a:focus-visible {
+  outline: 1px solid var(--main-color);
 }
 
 .content__subtitle,
@@ -186,26 +184,20 @@ footer::after {
   margin-block-start: 30px;
   padding: var(--padding-section);
   block-size: 100vh;
-  max-block-size: 668px;
+  min-block-size: 668px;
 }
 
 .footer__title {
   font-weight: 700;
-  margin-block-start: 250px;
-  margin-block-end: 250px;
   text-shadow: 2px 2px 0 var(--accent-color);
   justify-self: center;
+  align-self: center;
 }
 
 /* Задание (width > 780px) противоречит макету (width >= 768px). Выполняю согласно макету.*/
 @media (width >= 768px) {
-  :root {
-    --font-size-title: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
-    --padding-section: 20px;
-  }
-
   .header {
-    max-block-size: 1024px;
+    min-block-size: 1024px;
   }
 
   .header__theme-menu-list {
@@ -228,46 +220,17 @@ footer::after {
     margin-block-start: 40px;
   }
 
-  .content__type_one {
-    display: grid;
+  .content__section {
     grid-template-columns: 1fr 2fr;
-    column-gap: 20px;
+    gap: 20px;
   }
 
-  .content__type_one .content__title {
-    grid-column: 1;
-    grid-row: 1 / 4;
+  .content__section-causes {
+    grid-template-columns: 1fr;
   }
 
-  .content__type_one .content__subtitle {
-    grid-column: 2;
-  }
-
-  .content__type_one .content__sub-subtitle {
-    grid-column: 2;
-  }
-
-  .content__type_one .content__text {
-    grid-column: 2;
-  }
-
-  .content__type_two {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 20px;
-  }
-
-  .content__type_two .content__title {
-    grid-column: 1;
-    margin-block-end: 20px;
-  }
-
-  .content__type_two .content__subtitle {
-    grid-column: 1 / 4;
-  }
-
-  .content__type_two .content__text {
-    grid-column: 1 / 4;
+  .content__section-causes .content__title {
+    inline-size: 30%;
   }
 
   .content__subtitle,
@@ -284,10 +247,9 @@ footer::after {
     margin-block-end: 20px;
   }
 
-  .content__type_one .title-gallary {
+  .title-gallary {
     grid-column: 1 / 3;
-    margin-block-start: 60px;
-    margin-block-end: 20px;
+    margin-block-start: 40px;
   }
 
   .content__gallery {
@@ -329,7 +291,7 @@ footer::after {
 
   .footer {
     margin-block-start: 40px;
-    max-block-size: 1024px;
+    min-block-size: 1024px;
   }
 
   .footer__title {
@@ -340,13 +302,8 @@ footer::after {
 
 /* Задание (width > 1024px) противоречит макету (width >= 1024px). Выполняю согласно макету.*/
 @media (min-width: 1024px) {
-  :root {
-    --font-size-title: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
-    --padding-section: 20px;
-  }
-
   .header {
-    max-block-size: 768px;
+    min-block-size: 768px;
   }
 
   .header__theme-menu {
@@ -366,22 +323,31 @@ footer::after {
     margin-block-end: 90px;
   }
 
-  .content__type_one {
-    column-gap: 10px;
+  .content__section {
+    gap: 10px;
   }
 
-  .content__type_two .content__subtitle {
-    grid-column: span 1;
-    grid-row: 2;
+  .content__section-causes {
+    grid-template-columns: 1fr;
   }
 
-  .content__type_two .content__text {
-    grid-column: span 1;
-    grid-row: 3;
+  .content__section-causes .content__items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  .content__section-causes .content__title {
+    margin-block-end: 10px;
+  }
+
+  .title-gallary {
+    margin-block: 10px;
+    margin-block: 50px 10px;
   }
 
   .footer {
-    max-block-size: 768px;
+    min-block-size: 768px;
   }
 
   .footer__title {
